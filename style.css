@@ -13,13 +13,24 @@ body {
   width: 768px;
   display: flex;
   grid-template: repeat(16, 48px) / repeat(16, 48px);
-  border: 5px solid black;
-  background: #c0c0c0;
+  border: 5px solid rgb(26, 24, 24);
+  background: #e7e6e6;
+}
+.reset {
+  font-size: 24px;
+  padding: 10px 90px;
+  background-color: #f0f0f0;
+  text-decoration: none;
+  border: 2px solid black;
+  border-radius: 50px;
+  transition-duration: 0.4s;
+}
+.mods {
+  margin-right: 300px;
 }
 .column {
   flex: 1;
 }
-
 .row {
   border: 1px solid black;
   height: 48px;
@@ -29,4 +40,7 @@ body {
 }
 .colored {
   background-color: black;
+}
+.reset:hover {
+  background-color: #c0c0c0; /* Green */
 }

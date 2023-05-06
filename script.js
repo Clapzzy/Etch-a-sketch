@@ -1,6 +1,7 @@
 const columns = 16;
 const rows = 16;
 
+const reset = document.querySelector('.reset');
 const container = document.querySelector('.container');
 
 const grid = document.createElement('div');
@@ -10,6 +11,7 @@ function giveColor(event) {
     event.target.style.backgroundColor = 'black';
     console.log('colored');
 }
+
 
 for (var i = 0; i < columns; ++i) {
     var column = document.createElement('div'); // create column
@@ -23,7 +25,18 @@ for (var i = 0; i < columns; ++i) {
 }
 container.appendChild(grid);
 const pixel = document.querySelectorAll('.row');
-console.log(pixel);
 pixel.forEach((pixel) => {
     pixel.addEventListener('mouseenter', giveColor);
-  });
+});
+
+console.log(reset);
+reset.addEventListener('click', () => {
+    console.log('test 1');
+    pixel.forEach((pixel) => {
+        console.log('test 2');
+        if(pixel.style.backgroundColor == "black"){
+            console.log('test 3');
+            pixel.style.backgroundColor = '#c0c0c0';
+        }
+    });
+})
