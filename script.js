@@ -1,42 +1,50 @@
-const columns = 16;
-const rows = 16;
-
-const reset = document.querySelector('.reset');
 const container = document.querySelector('.container');
-
+const resetBtn = document.querySelector('.reset');
+const slider = document.querySelector('#slider');
+const output = document.querySelector('#output');
 const grid = document.createElement('div');
-grid.className = 'grid';
+grid.classList.add('grid');
 
-function giveColor(event) {
-    event.target.style.backgroundColor = 'black';
-    console.log('colored');
+let size = 32;
+
+make_grid();
+
+function make_grid() {
+  grid.style.gridTemplateColumns = `repeat(${slider.value}, 1fr)`
+  grid.style.gridTemplateRows = `repeat(${slider.value}, 1fr)`;
+  console.log(slider.value);
+  container.appendChild(grid);
+  for(let i = 0; i < slider.value * slider.value; i++){
+    const row = document.createElement('div');
+    row.classList.add('row');
+    row.addEventListener('mouseenter', handlePixelHover);
+    row.addEventListener('mousedown', handlePixelHover);
+    grid.appendChild(row);
+  }
 }
 
-
-for (var i = 0; i < columns; ++i) {
-    var column = document.createElement('div'); // create column
-    column.className = 'column';
-    for (var j = 0; j < rows; ++j) {
-        var row = document.createElement('div'); // create row
-        row.className = 'row';
-        column.appendChild(row); // append row in column
-    }
-    grid.appendChild(column); // append column inside grid
+function handlePixelHover(event) {
+  event.target.style.backgroundColor = 'black';
 }
-container.appendChild(grid);
-const pixel = document.querySelectorAll('.row');
-pixel.forEach((pixel) => {
-    pixel.addEventListener('mouseenter', giveColor);
+
+const pixels = document.querySelectorAll('.row');
+resetBtn.addEventListener('click', () => {
+  grid_remove();
+  make_grid();
 });
 
-console.log(reset);
-reset.addEventListener('click', () => {
-    console.log('test 1');
-    pixel.forEach((pixel) => {
-        console.log('test 2');
-        if(pixel.style.backgroundColor == "black"){
-            console.log('test 3');
-            pixel.style.backgroundColor = '#c0c0c0';
-        }
-    });
-})
+function grid_remove(){
+  grid.innerHTML = '';
+}
+
+function handleSliderChange() {
+  const sliderValue = slider.value;
+  output.textContent = `${sliderValue} x ${sliderValue}`;
+}
+slider.addEventListener('input', () => {
+  handleSliderChange();
+  grid_remove();
+  make_grid();
+});
+
+
