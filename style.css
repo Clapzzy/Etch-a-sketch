@@ -8,6 +8,10 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+.whyNot{
+  width: 100px;
+  color: #696969;
+}
 .grid {
   height: 768px;
   width: 768px;
